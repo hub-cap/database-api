@@ -286,7 +286,7 @@ to communicate with the Database service itself.
 API Resources
 -------------
 
-### Users: `/v3/instances`
+### Users: `/v1/instances`
 
 A database instance is an isolated MySQL instance in a single tenant environment 
 on a shared physical host machine. Also referred to as instance.
@@ -375,9 +375,9 @@ Example entity:
         }
     }
   
-### Groups: `/v1/databases`
+### Groups: `/v1/instances/{instance_id}/databases`
 
-A database within a database instance.
+A list database within a database instance.
 
 Additional required attributes:
 
@@ -399,14 +399,45 @@ Optional attributes:
 Example entity:
 
     {
-        "databases": [
-            {
-                "character_set": "utf8", 
-                "collate": "utf8_general_ci", 
-                "name": "testingdb"
-            }, 
-            {
-                "name": "sampledb"
-            }
-        ]
+         "database": {
+             "character_set": "utf8", 
+             "collate": "utf8_general_ci", 
+             "name": "testingdb"
+         }
+    }
+
+### Users: `/v1/instances/{instance_id}/users`
+
+A user for a specified database.
+
+Additional required attributes:
+
+- `name` (string)
+
+  Specifies the name of the user for the database.
+
+- `password` (string)
+
+  Specifies the user password for database access.
+
+- `database` (list)
+
+    - `name` (string)
+      Name of the database that the user can access. One or more database names must be specified.
+
+Example entity:
+
+    {
+         {
+             "databases": [
+                 {
+                     "name": "databaseB"
+                 }, 
+                 {
+                     "name": "databaseC"
+                 }
+             ], 
+             "name": "dbuser", 
+             "password": "password"
+         }
     }

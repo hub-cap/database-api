@@ -375,3 +375,38 @@ Example entity:
         }
     }
   
+### Groups: `/v1/databases`
+
+A database within a database instance.
+
+Additional required attributes:
+
+- `name` (string)
+
+  Specifies the database name for creating the database.
+
+Optional attributes:
+
+- `character_set` (string)
+
+  Set of symbols and encodings. The default character set is utf8.
+
+- `collate` (string)
+
+  Set of rules for comparing characters in a character set. The default 
+  value for collate is utf8_general_ci.
+
+Example entity:
+
+    {
+        "databases": [
+            {
+                "character_set": "utf8", 
+                "collate": "utf8_general_ci", 
+                "name": "testingdb"
+            }, 
+            {
+                "name": "sampledb"
+            }
+        ]
+    }

@@ -428,7 +428,7 @@ Additional required attributes:
 Example entity:
 
     {
-         {
+         "user": {
              "databases": [
                  {
                      "name": "databaseB"
@@ -440,4 +440,28 @@ Example entity:
              "name": "dbuser", 
              "password": "password"
          }
+    }
+
+### Flavors: `/v1/flavors`
+
+A flavor is an available hardware configuration for a database instance. Each flavor has a unique combination of memory capacity and priority for CPU time
+
+Example entity:
+
+    {
+        "flavor": {
+            "id": 1, 
+            "links": [
+                {
+                    "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+                    "rel": "self"
+                }, 
+                {
+                    "href": "https://ord.databases.api.rackspacecloud.com/flavors/1", 
+                    "rel": "bookmark"
+                }
+            ], 
+            "name": "m1.tiny", 
+            "ram": 512
+        }
     }

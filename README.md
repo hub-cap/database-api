@@ -341,3 +341,37 @@ Optional attributes:
         - `name` (string)
         
         Specifies names of databases that those users can access on instance creation.
+
+Example entity:
+
+    {
+        "instance": {
+            "databases": [
+                {
+                    "character_set": "utf8", 
+                    "collate": "utf8_general_ci", 
+                    "name": "sampledb"
+                }, 
+                {
+                    "name": "nextround"
+                }
+            ], 
+            "flavorRef": "https://endpoint/v1.0/1234/flavors/1", 
+            "name": "json_rack_instance", 
+            "users": [
+                {
+                    "databases": [
+                        {
+                            "name": "sampledb"
+                        }
+                    ], 
+                    "name": "demouser", 
+                    "password": "demopassword"
+                }
+            ], 
+            "volume": {
+                "size": 2
+            }
+        }
+    }
+  

@@ -453,11 +453,11 @@ Example entity:
             "id": 1, 
             "links": [
                 {
-                    "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+                    "href": "https://endpoint/v1.0/1234/flavors/1", 
                     "rel": "self"
                 }, 
                 {
-                    "href": "https://ord.databases.api.rackspacecloud.com/flavors/1", 
+                    "href": "https://endpoint/flavors/1", 
                     "rel": "bookmark"
                 }
             ], 

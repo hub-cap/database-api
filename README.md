@@ -713,3 +713,53 @@ Response:
         "rootEnabled": true
     }
     
+### Instance Actions
+
+#### Restart Instance `POST /instances/{instanceId}/action`
+
+The restart operation will restart only the MySQL Instance. Restarting MySQL will erase any dynamic configuration settings that you have made within MySQL.
+
+Request:
+
+    {
+        "restart": {}
+    }
+
+Response:
+
+    Status 202 ACCEPTED
+
+#### Resize Instance `POST /instances/{instanceId}/action`
+
+This operation changes the memory size of the instance, assuming a valid flavorRef is provided. Restarts MySQL in the process.
+
+Request:
+
+    {
+        "resize": {
+            "flavorRef": "https://endpoint/v1.0/1234/flavors/2"
+        }
+    }
+
+Response:
+
+    Status 202 ACCEPTED
+
+#### Resize Volume `POST /instances/{instanceId}/action`
+
+This operation supports resizing the attached volume for an instance. It supports only increasing the volume size and does not support decreasing the size. The volume size is in gigabytes (GB) and must be an integer.
+
+Request:
+
+    {
+        "resize": {
+            "volume": {
+                "size": 4
+            }
+        }
+    }
+
+Response:
+
+    Status 202 ACCEPTED
+

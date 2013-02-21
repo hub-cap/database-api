@@ -640,6 +640,8 @@ This operation lists the status and details of the specified database instance. 
 
 Response:
 
+    Status: 200 OK
+
     {
         "instance": {
             "created": "2012-03-28T21:31:02Z", 
@@ -684,3 +686,30 @@ Response:
     
     Status: 202 ACCEPTED
 
+#### Enable root user: `POST /instances/{instance_id}/root`
+
+This operation enables login from any host for the root user and provides the user with a generated root password.
+
+Response:
+
+    Status: 200 OK
+    
+    {
+        "user": {
+            "name": "root", 
+            "password": "d4311cb1-d912-45be-8517-e8a46f54df66"
+        }
+    }    
+    
+### Get root enabled status: `GET /instances/{instance_id}/root`
+
+This operation checks an active specified database instance to see if root access is enabled. It returns True if root user is enabled for the specified database instance or False otherwise.
+
+Response:
+
+    Status: 200 OK
+    
+    {
+        "rootEnabled": true
+    }
+    

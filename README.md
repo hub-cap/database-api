@@ -423,7 +423,8 @@ Additional required attributes:
 - `database` (list)
 
     - `name` (string)
-      Name of the database that the user can access. One or more database names must be specified.
+      Name of the database that the user can access. One or more database names 
+      must be specified.
 
 Example entity:
 
@@ -444,7 +445,8 @@ Example entity:
 
 ### Flavors: `/v1/flavors`
 
-A flavor is an available hardware configuration for a database instance. Each flavor has a unique combination of memory capacity and priority for CPU time
+A flavor is an available hardware configuration for a database instance. Each 
+flavor has a unique combination of memory capacity and priority for CPU time
 
 Example entity:
 
@@ -485,7 +487,10 @@ Use cases:
 
 #### CREATE instance: `POST /instances`
 
-This operation asynchronously provisions a new database instance. This call requires the user to specify a flavor and a volume size. The service then provisions the instance with the requested flavor and sets up a volume of the specified size, which is the storage for the database instance.
+This operation asynchronously provisions a new database instance. This call 
+requires the user to specify a flavor and a volume size. The service then 
+provisions the instance with the requested flavor and sets up a volume of the 
+specified size, which is the storage for the database instance.
 
 Request:
 
@@ -501,7 +506,7 @@ Request:
                     "name": "nextround"
                 }
             ], 
-            "flavorRef": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+            "flavorRef": "https://endpoint/v1.0/1234/flavors/1", 
             "name": "json_rack_instance", 
             "users": [
                 {
@@ -636,7 +641,8 @@ Response:
 
 #### List Database Instance Details `GET /instances/{instance_id}`
 
-This operation lists the status and details of the specified database instance. It also lists the volume size in gigabytes (GB) and the approximate GB used.
+This operation lists the status and details of the specified database instance. 
+It also lists the volume size in gigabytes (GB) and the approximate GB used.
 
 Response:
 
@@ -649,11 +655,11 @@ Response:
                 "id": "1", 
                 "links": [
                     {
-                        "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+                        "href": "https://endpoint/v1.0/1234/flavors/1", 
                         "rel": "self"
                     }, 
                     {
-                        "href": "https://ord.databases.api.rackspacecloud.com/flavors/1", 
+                        "href": "https://endpoint/flavors/1", 
                         "rel": "bookmark"
                     }
                 ]
@@ -662,11 +668,11 @@ Response:
             "id": "2450c73f-7805-4afe-a42c-4094ab42666b", 
             "links": [
                 {
-                    "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/instances/2450c73f-7805-4afe-a42c-4094ab42666b", 
+                    "href": "https://endpoint/v1.0/1234/instances/2450c73f-7805-4afe-a42c-4094ab42666b", 
                     "rel": "self"
                 }, 
                 {
-                    "href": "https://ord.databases.api.rackspacecloud.com/instances/2450c73f-7805-4afe-a42c-4094ab42666b", 
+                    "href": "https://endpoint/instances/2450c73f-7805-4afe-a42c-4094ab42666b", 
                     "rel": "bookmark"
                 }
             ], 
@@ -688,7 +694,8 @@ Response:
 
 #### Enable root user: `POST /instances/{instance_id}/root`
 
-This operation enables login from any host for the root user and provides the user with a generated root password.
+This operation enables login from any host for the root user and provides the 
+user with a generated root password.
 
 Response:
 
@@ -703,7 +710,9 @@ Response:
     
 ### Get root enabled status: `GET /instances/{instance_id}/root`
 
-This operation checks an active specified database instance to see if root access is enabled. It returns True if root user is enabled for the specified database instance or False otherwise.
+This operation checks an active specified database instance to see if root 
+access is enabled. It returns True if root user is enabled for the specified 
+database instance or False otherwise.
 
 Response:
 
@@ -717,7 +726,8 @@ Response:
 
 #### Restart Instance `POST /instances/{instanceId}/action`
 
-The restart operation will restart only the MySQL Instance. Restarting MySQL will erase any dynamic configuration settings that you have made within MySQL.
+The restart operation will restart only the MySQL Instance. Restarting MySQL 
+will erase any dynamic configuration settings that you have made within MySQL.
 
 Request:
 
@@ -731,7 +741,8 @@ Response:
 
 #### Resize Instance `POST /instances/{instanceId}/action`
 
-This operation changes the memory size of the instance, assuming a valid flavorRef is provided. Restarts MySQL in the process.
+This operation changes the memory size of the instance, assuming a valid 
+flavorRef is provided. Restarts MySQL in the process.
 
 Request:
 
@@ -747,7 +758,9 @@ Response:
 
 #### Resize Volume `POST /instances/{instanceId}/action`
 
-This operation supports resizing the attached volume for an instance. It supports only increasing the volume size and does not support decreasing the size. The volume size is in gigabytes (GB) and must be an integer.
+This operation supports resizing the attached volume for an instance. It 
+supports only increasing the volume size and does not support decreasing the 
+size. The volume size is in gigabytes (GB) and must be an integer.
 
 Request:
 
@@ -762,4 +775,3 @@ Request:
 Response:
 
     Status 202 ACCEPTED
-

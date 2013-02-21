@@ -465,3 +465,98 @@ Example entity:
             "ram": 512
         }
     }
+
+Core API
+--------
+
+### Versions
+
+#### List versions; `GET /`
+
+(TBD: This needs additional definition to match the detail below)
+
+### Instances
+
+Use cases:
+
+- Creating an instance
+- Listing instances
+- Retrieving instance details
+
+#### CREATE instance: `POST /instances`
+
+This operation asynchronously provisions a new database instance. This call requires the user to specify a flavor and a volume size. The service then provisions the instance with the requested flavor and sets up a volume of the specified size, which is the storage for the database instance.
+
+Request:
+
+    {
+        "instance": {
+            "databases": [
+                {
+                    "character_set": "utf8", 
+                    "collate": "utf8_general_ci", 
+                    "name": "sampledb"
+                }, 
+                {
+                    "name": "nextround"
+                }
+            ], 
+            "flavorRef": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+            "name": "json_rack_instance", 
+            "users": [
+                {
+                    "databases": [
+                        {
+                            "name": "sampledb"
+                        }
+                    ], 
+                    "name": "demouser", 
+                    "password": "demopassword"
+                }
+            ], 
+            "volume": {
+                "size": 2
+            }
+        }
+    }
+
+Response:
+
+    Status: 200 OK
+
+    {
+        "instance": {
+            "created": "2012-01-25T21:53:09Z", 
+            "flavor": {
+                "id": "1", 
+                "links": [
+                    {
+                        "href": "https://endpoint/v1.0/1234/flavors/1", 
+                        "rel": "self"
+                    }, 
+                    {
+                        "href": "https://endpoint/flavors/1", 
+                        "rel": "bookmark"
+                    }
+                ]
+            }, 
+            "hostname": "e09ad9a3f73309469cf1f43d11e79549caf9acf2.rackspaceclouddb.com", 
+            "id": "dea5a2f7-3ec7-4496-adab-0abb5a42d635", 
+            "links": [
+                {
+                    "href": "https://endpoint/v1.0/1234/instances/dea5a2f7-3ec7-4496-adab-0abb5a42d635", 
+                    "rel": "self"
+                }, 
+                {
+                    "href": "https://endpoint/instances/dea5a2f7-3ec7-4496-adab-0abb5a42d635", 
+                    "rel": "bookmark"
+                }
+            ], 
+            "name": "json_rack_instance", 
+            "status": "BUILD", 
+            "updated": "2012-01-25T21:53:10Z", 
+            "volume": {
+                "size": 2
+            }
+        }
+    }

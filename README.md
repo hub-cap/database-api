@@ -560,3 +560,77 @@ Response:
             }
         }
     }
+
+#### LIST instances: `GET /instances`
+
+This operation lists the status and information for all database instances.
+
+Response:
+
+    {
+        "instances": [
+            {
+                "flavor": {
+                    "id": "1", 
+                    "links": [
+                        {
+                            "href": "https://endpoint/v1.0/1234/flavors/1", 
+                            "rel": "self"
+                        }, 
+                        {
+                            "href": "https://endpoint/flavors/1", 
+                            "rel": "bookmark"
+                        }
+                    ]
+                }, 
+                "id": "28d1b8f3-172a-4f6d-983d-36021508444a", 
+                "links": [
+                    {
+                        "href": "https://endpoint/v1.0/1234/instances/28d1b8f3-172a-4f6d-983d-36021508444a", 
+                        "rel": "self"
+                    }, 
+                    {
+                        "href": "https://endpoint/instances/28d1b8f3-172a-4f6d-983d-36021508444a", 
+                        "rel": "bookmark"
+                    }
+                ], 
+                "name": "instance1", 
+                "status": "ACTIVE", 
+                "volume": {
+                    "size": 2
+                }
+            }, 
+            {
+                "flavor": {
+                    "id": "1", 
+                    "links": [
+                        {
+                            "href": "https://endpoint/v1.0/1234/flavors/1", 
+                            "rel": "self"
+                        }, 
+                        {
+                            "href": "https://endpoint/flavors/1", 
+                            "rel": "bookmark"
+                        }
+                    ]
+                }, 
+                "id": "8fb081af-f237-44f5-80cc-b46be1840ca9", 
+                "links": [
+                    {
+                        "href": "https://endpoint/v1.0/1234/instances/8fb081af-f237-44f5-80cc-b46be1840ca9", 
+                        "rel": "self"
+                    }, 
+                    {
+                        "href": "https://endpoint/instances/8fb081af-f237-44f5-80cc-b46be1840ca9", 
+                        "rel": "bookmark"
+                    }
+                ], 
+                "name": "instance2", 
+                "status": "ACTIVE", 
+                "volume": {
+                    "size": 2
+                }
+            }
+        ]
+    }
+

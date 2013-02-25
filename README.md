@@ -724,7 +724,7 @@ Response:
     
 ### Instance Actions
 
-#### Restart Instance `POST /instances/{instanceId}/action`
+#### Restart instance `POST /instances/{instanceId}/action`
 
 The restart operation will restart only the MySQL Instance. Restarting MySQL 
 will erase any dynamic configuration settings that you have made within MySQL.
@@ -739,7 +739,7 @@ Response:
 
     Status 202 ACCEPTED
 
-#### Resize Instance `POST /instances/{instanceId}/action`
+#### Resize instance `POST /instances/{instanceId}/action`
 
 This operation changes the memory size of the instance, assuming a valid 
 flavorRef is provided. Restarts MySQL in the process.
@@ -756,7 +756,7 @@ Response:
 
     Status 202 ACCEPTED
 
-#### Resize Volume `POST /instances/{instanceId}/action`
+#### Resize volume `POST /instances/{instanceId}/action`
 
 This operation supports resizing the attached volume for an instance. It 
 supports only increasing the volume size and does not support decreasing the 
@@ -775,3 +775,63 @@ Request:
 Response:
 
     Status 202 ACCEPTED
+
+### Database
+
+#### Create database `POST /instances/{instance_id}/databases`
+
+Creates a new database(s) within the specified instance.
+
+Request:
+
+    {
+        "databases": [
+            {
+                "character_set": "utf8", 
+                "collate": "utf8_general_ci", 
+                "name": "testingdb"
+            }, 
+            {
+                "name": "sampledb"
+            }
+        ]
+    }
+
+Response:
+
+    Status 202 ACCEPTED
+
+#### List databases `GET /instances/{instance_id}/databases`
+
+Lists databases for the specified instance.
+
+Response:
+
+    {
+        "databases": [
+            {
+                "name": "anotherexampledb"
+            }, 
+            {
+                "name": "exampledb"
+            }, 
+            {
+                "name": "nextround"
+            }, 
+            {
+                "name": "sampledb"
+            }, 
+            {
+                "name": "testingdb"
+            }
+        ]
+    }
+
+#### Delete database `DELETE  /instances/{instance_id}/databases/{database_name}`
+
+Deletes the requested database within the specified database instance. Note that all data associated with the database is also deleted.
+
+Response
+
+    Status: 202 ACCEPTED
+

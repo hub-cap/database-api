@@ -829,7 +829,8 @@ Response:
 
 #### Delete database `DELETE  /instances/{instance_id}/databases/{database_name}`
 
-Deletes the requested database within the specified database instance. Note that all data associated with the database is also deleted.
+Deletes the requested database within the specified database instance. Note that 
+all data associated with the database is also deleted.
 
 Response
 
@@ -915,7 +916,8 @@ Response
 
 #### List Flavors `GET /flavors`
 
-Lists information for all available flavors. This resource is identical to the flavors found in the OpenStack Nova API, but without the disk property.
+Lists information for all available flavors. This resource is identical to the 
+flavors found in the OpenStack Nova API, but without the disk property.
 
 Response:
 

@@ -911,3 +911,99 @@ Response
 
     Status: 202 ACCEPTED
 
+### Flavors
+
+#### List Flavors `GET /flavors`
+
+Lists information for all available flavors. This resource is identical to the flavors found in the OpenStack Nova API, but without the disk property.
+
+Response:
+
+    {
+        "flavors": [
+            {
+                "id": 1, 
+                "links": [
+                    {
+                        "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+                        "rel": "self"
+                    }, 
+                    {
+                        "href": "https://ord.databases.api.rackspacecloud.com/flavors/1", 
+                        "rel": "bookmark"
+                    }
+                ], 
+                "name": "m1.tiny", 
+                "ram": 512
+            }, 
+            {
+                "id": 2, 
+                "links": [
+                    {
+                        "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/2", 
+                        "rel": "self"
+                    }, 
+                    {
+                        "href": "https://ord.databases.api.rackspacecloud.com/flavors/2", 
+                        "rel": "bookmark"
+                    }
+                ], 
+                "name": "m1.small", 
+                "ram": 1024
+            }, 
+            {
+                "id": 3, 
+                "links": [
+                    {
+                        "href": "https://endpoint/v1.0/1234/flavors/3", 
+                        "rel": "self"
+                    }, 
+                    {
+                        "href": "https://endpoint/flavors/3", 
+                        "rel": "bookmark"
+                    }
+                ], 
+                "name": "m1.medium", 
+                "ram": 2048
+            }, 
+            {
+                "id": 4, 
+                "links": [
+                    {
+                        "href": "https://endpoint/v1.0/1234/flavors/4", 
+                        "rel": "self"
+                    }, 
+                    {
+                        "href": "https://endpoint/flavors/4", 
+                        "rel": "bookmark"
+                    }
+                ], 
+                "name": "m1.large", 
+                "ram": 4096
+            }, 
+        ]
+    }
+
+#### Get Flavor Details `GET /flavors/{flavor_id}
+
+Gets more detailed information about a given flavor.
+
+Response:
+
+    {
+        "flavor": {
+            "id": 1, 
+            "links": [
+                {
+                    "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+                    "rel": "self"
+                }, 
+                {
+                    "href": "https://ord.databases.api.rackspacecloud.com/flavors/1", 
+                    "rel": "bookmark"
+                }
+            ], 
+            "name": "m1.tiny", 
+            "ram": 512
+        }
+    }

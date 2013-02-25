@@ -874,6 +874,27 @@ Response:
 
     Status 202 ACCEPTED
 
+#### Get User `GET /instances/{instance_id}/users/{username}`
+
+Show a single user and the databases to which this user has privileges.
+
+Response:
+
+    {      
+        "user": {
+            "name": "username",
+            "databases": [
+                {
+                    "name": "databaseB"
+
+                }, 
+                {
+                    "name": "databaseC"
+                }
+            ]
+        }
+    }
+
 #### List users `GET /instances/{instance_id}/users`
 
 Lists users for the specified instance.
@@ -903,6 +924,52 @@ Response:
             }
         ]
     }
+
+
+#### Get users databases `GET /instances/{instance_id}/users/{username}/databases`
+
+Gets a list of databases for which a user has access.
+
+Response:
+
+    {
+        "databases": [
+            {
+                "name": "databaseB"
+            }, 
+            {
+                "name": "databaseC"
+            }
+        ]
+    }
+
+#### Add database privileges `PUT /instances/{instance_id}/users/{username}/databases`
+
+Adds privileges on the specified database(s) to the user.
+
+Request:
+
+    {
+
+        "databases": [
+            {
+                "name": "databaseB"
+            }, 
+            {
+                "name": "databaseC"
+            }
+        ]
+    }
+
+Response:
+
+    Status: 202 ACCEPTED
+
+#### Remove database privileges `DELETE /instances/{instance_id}/users/{username}/databases/{databaseName}`
+
+Response:
+
+    Status: 202 ACCEPTED
 
 #### Delete user `DELETE  /instances/{instance_id}/users/{user_name}`
 

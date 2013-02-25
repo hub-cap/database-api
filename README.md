@@ -835,3 +835,79 @@ Response
 
     Status: 202 ACCEPTED
 
+### Users
+
+#### Create user `POST /instances/{instance_id}/users`
+
+Creates a new user(s) within the specified instance.
+
+Request:
+
+    {
+        "users": [
+            {
+                "databases": [
+                    {
+                        "name": "databaseA"
+                    }
+                ], 
+                "name": "dbuser3", 
+                "password": "password"
+            }, 
+            {
+                "databases": [
+                    {
+                        "name": "databaseB"
+                    }, 
+                    {
+                        "name": "databaseC"
+                    }
+                ], 
+                "name": "dbuser4", 
+                "password": "password"
+            }
+        ]
+    }
+
+Response:
+
+    Status 202 ACCEPTED
+
+#### List users `GET /instances/{instance_id}/users`
+
+Lists users for the specified instance.
+
+Response:
+
+    {
+        "users": [
+            {
+                "databases": [
+                    {
+                        "name": "databaseA"
+                    }
+                ], 
+                "name": "dbuser3"
+            }, 
+            {
+                "databases": [
+                    {
+                        "name": "databaseB"
+                    }, 
+                    {
+                        "name": "databaseC"
+                    }
+                ], 
+                "name": "dbuser4"
+            }
+        ]
+    }
+
+#### Delete user `DELETE  /instances/{instance_id}/users/{user_name}`
+
+Deletes the requested user within the specified instance.
+
+Response
+
+    Status: 202 ACCEPTED
+

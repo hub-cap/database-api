@@ -971,6 +971,26 @@ Response:
 
     Status: 202 ACCEPTED
 
+#### Modify user password `PUT /instances/{instance_id}/users`
+
+Changes the password of the specified user(s).
+
+Request:
+
+    {
+        "users": [
+            {
+                "name": "dbuser3", 
+                "password": "password"
+            }, 
+            {
+                "name": "dbuser4", 
+                "password": "password"
+            }
+        ]
+    }
+
+
 #### Delete user `DELETE  /instances/{instance_id}/users/{user_name}`
 
 Deletes the requested user within the specified instance.

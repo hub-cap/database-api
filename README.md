@@ -1014,11 +1014,11 @@ Response:
                 "id": 1, 
                 "links": [
                     {
-                        "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+                        "href": "https://endpoint/v1.0/1234/flavors/1", 
                         "rel": "self"
                     }, 
                     {
-                        "href": "https://ord.databases.api.rackspacecloud.com/flavors/1", 
+                        "href": "https://endpoint/flavors/1", 
                         "rel": "bookmark"
                     }
                 ], 
@@ -1029,11 +1029,11 @@ Response:
                 "id": 2, 
                 "links": [
                     {
-                        "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/2", 
+                        "href": "https://endpoint/v1.0/1234/flavors/2", 
                         "rel": "self"
                     }, 
                     {
-                        "href": "https://ord.databases.api.rackspacecloud.com/flavors/2", 
+                        "href": "https://endpoint/flavors/2", 
                         "rel": "bookmark"
                     }
                 ], 
@@ -1084,11 +1084,11 @@ Response:
             "id": 1, 
             "links": [
                 {
-                    "href": "https://ord.databases.api.rackspacecloud.com/v1.0/1234/flavors/1", 
+                    "href": "https://endpoint/v1.0/1234/flavors/1", 
                     "rel": "self"
                 }, 
                 {
-                    "href": "https://ord.databases.api.rackspacecloud.com/flavors/1", 
+                    "href": "https://endpoint/flavors/1", 
                     "rel": "bookmark"
                 }
             ], 

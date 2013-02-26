@@ -288,21 +288,21 @@ API Resources
 
 ### Users: `/v1/instances`
 
-A database instance is an isolated MySQL instance in a single tenant environment 
+A database instance is an isolated MySQL instance in a single tenant environment
 on a shared physical host machine. Also referred to as instance.
 
 Additional required attributes:
 
 - `name` (string)
 
-  Name of the instance to create. The length of the name is limited to 255 
+  Name of the instance to create. The length of the name is limited to 255
   characters and any characters are permitted.
 
 - `flavorRef` (integer)
 
-  Reference (href) to a flavor as specified in the response from the List   
-  Flavors API call. This is the actual URI as specified by the href field in the 
-  link. Refer to the List Flavors response examples that follow for an example 
+  Reference (href) to a flavor as specified in the response from the List
+  Flavors API call. This is the actual URI as specified by the href field in the
+  link. Refer to the List Flavors response examples that follow for an example
   of the flavorRef.
 
 - `size` (integer)
@@ -323,7 +323,7 @@ Optional attributes:
 
     - `collate` (string)
 
-      Set of rules for comparing characters in a character set. The default 
+      Set of rules for comparing characters in a character set. The default
       value for collate is utf8_general_ci.
 
 - `users` (list)
@@ -339,7 +339,7 @@ Optional attributes:
     - `databases` (list)
 
         - `name` (string)
-        
+
         Specifies names of databases that those users can access on instance creation.
 
 Example entity:
@@ -348,34 +348,34 @@ Example entity:
         "instance": {
             "databases": [
                 {
-                    "character_set": "utf8", 
-                    "collate": "utf8_general_ci", 
+                    "character_set": "utf8",
+                    "collate": "utf8_general_ci",
                     "name": "sampledb"
-                }, 
+                },
                 {
                     "name": "nextround"
                 }
-            ], 
-            "flavorRef": "https://endpoint/v1.0/1234/flavors/1", 
-            "name": "json_rack_instance", 
+            ],
+            "flavorRef": "https://endpoint/v1.0/1234/flavors/1",
+            "name": "json_rack_instance",
             "users": [
                 {
                     "databases": [
                         {
                             "name": "sampledb"
                         }
-                    ], 
-                    "name": "demouser", 
+                    ],
+                    "name": "demouser",
                     "password": "demopassword"
                 }
-            ], 
+            ],
             "volume": {
                 "size": 2
             }
         }
     }
-  
-### Groups: `/v1/instances/{instance_id}/databases`
+
+### Databases: `/v1/instances/{instance_id}/databases`
 
 A list database within a database instance.
 
@@ -393,15 +393,15 @@ Optional attributes:
 
 - `collate` (string)
 
-  Set of rules for comparing characters in a character set. The default 
+  Set of rules for comparing characters in a character set. The default
   value for collate is utf8_general_ci.
 
 Example entity:
 
     {
          "database": {
-             "character_set": "utf8", 
-             "collate": "utf8_general_ci", 
+             "character_set": "utf8",
+             "collate": "utf8_general_ci",
              "name": "testingdb"
          }
     }
@@ -423,7 +423,7 @@ Additional required attributes:
 - `database` (list)
 
     - `name` (string)
-      Name of the database that the user can access. One or more database names 
+      Name of the database that the user can access. One or more database names
       must be specified.
 
 Example entity:
@@ -433,37 +433,37 @@ Example entity:
              "databases": [
                  {
                      "name": "databaseB"
-                 }, 
+                 },
                  {
                      "name": "databaseC"
                  }
-             ], 
-             "name": "dbuser", 
+             ],
+             "name": "dbuser",
              "password": "password"
          }
     }
 
 ### Flavors: `/v1/flavors`
 
-A flavor is an available hardware configuration for a database instance. Each 
+A flavor is an available hardware configuration for a database instance. Each
 flavor has a unique combination of memory capacity and priority for CPU time
 
 Example entity:
 
     {
         "flavor": {
-            "id": 1, 
+            "id": 1,
             "links": [
                 {
-                    "href": "https://endpoint/v1.0/1234/flavors/1", 
+                    "href": "https://endpoint/v1.0/1234/flavors/1",
                     "rel": "self"
-                }, 
+                },
                 {
-                    "href": "https://endpoint/flavors/1", 
+                    "href": "https://endpoint/flavors/1",
                     "rel": "bookmark"
                 }
-            ], 
-            "name": "m1.tiny", 
+            ],
+            "name": "m1.tiny",
             "ram": 512
         }
     }
@@ -487,9 +487,9 @@ Use cases:
 
 #### CREATE instance: `POST /instances`
 
-This operation asynchronously provisions a new database instance. This call 
-requires the user to specify a flavor and a volume size. The service then 
-provisions the instance with the requested flavor and sets up a volume of the 
+This operation asynchronously provisions a new database instance. This call
+requires the user to specify a flavor and a volume size. The service then
+provisions the instance with the requested flavor and sets up a volume of the
 specified size, which is the storage for the database instance.
 
 Request:
@@ -498,27 +498,27 @@ Request:
         "instance": {
             "databases": [
                 {
-                    "character_set": "utf8", 
-                    "collate": "utf8_general_ci", 
+                    "character_set": "utf8",
+                    "collate": "utf8_general_ci",
                     "name": "sampledb"
-                }, 
+                },
                 {
                     "name": "nextround"
                 }
-            ], 
-            "flavorRef": "https://endpoint/v1.0/1234/flavors/1", 
-            "name": "json_rack_instance", 
+            ],
+            "flavorRef": "https://endpoint/v1.0/1234/flavors/1",
+            "name": "json_rack_instance",
             "users": [
                 {
                     "databases": [
                         {
                             "name": "sampledb"
                         }
-                    ], 
-                    "name": "demouser", 
+                    ],
+                    "name": "demouser",
                     "password": "demopassword"
                 }
-            ], 
+            ],
             "volume": {
                 "size": 2
             }
@@ -531,35 +531,35 @@ Response:
 
     {
         "instance": {
-            "created": "2012-01-25T21:53:09Z", 
+            "created": "2012-01-25T21:53:09Z",
             "flavor": {
-                "id": "1", 
+                "id": "1",
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/flavors/1", 
+                        "href": "https://endpoint/v1.0/1234/flavors/1",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/flavors/1", 
+                        "href": "https://endpoint/flavors/1",
                         "rel": "bookmark"
                     }
                 ]
-            }, 
-            "hostname": "e09ad9a3f73309469cf1f43d11e79549caf9acf2.rackspaceclouddb.com", 
-            "id": "dea5a2f7-3ec7-4496-adab-0abb5a42d635", 
+            },
+            "hostname": "e09ad9a3f73309469cf1f43d11e79549caf9acf2.rackspaceclouddb.com",
+            "id": "dea5a2f7-3ec7-4496-adab-0abb5a42d635",
             "links": [
                 {
-                    "href": "https://endpoint/v1.0/1234/instances/dea5a2f7-3ec7-4496-adab-0abb5a42d635", 
+                    "href": "https://endpoint/v1.0/1234/instances/dea5a2f7-3ec7-4496-adab-0abb5a42d635",
                     "rel": "self"
-                }, 
+                },
                 {
-                    "href": "https://endpoint/instances/dea5a2f7-3ec7-4496-adab-0abb5a42d635", 
+                    "href": "https://endpoint/instances/dea5a2f7-3ec7-4496-adab-0abb5a42d635",
                     "rel": "bookmark"
                 }
-            ], 
-            "name": "json_rack_instance", 
-            "status": "BUILD", 
-            "updated": "2012-01-25T21:53:10Z", 
+            ],
+            "name": "json_rack_instance",
+            "status": "BUILD",
+            "updated": "2012-01-25T21:53:10Z",
             "volume": {
                 "size": 2
             }
@@ -576,62 +576,62 @@ Response:
         "instances": [
             {
                 "flavor": {
-                    "id": "1", 
+                    "id": "1",
                     "links": [
                         {
-                            "href": "https://endpoint/v1.0/1234/flavors/1", 
+                            "href": "https://endpoint/v1.0/1234/flavors/1",
                             "rel": "self"
-                        }, 
+                        },
                         {
-                            "href": "https://endpoint/flavors/1", 
+                            "href": "https://endpoint/flavors/1",
                             "rel": "bookmark"
                         }
                     ]
-                }, 
-                "id": "28d1b8f3-172a-4f6d-983d-36021508444a", 
+                },
+                "id": "28d1b8f3-172a-4f6d-983d-36021508444a",
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/instances/28d1b8f3-172a-4f6d-983d-36021508444a", 
+                        "href": "https://endpoint/v1.0/1234/instances/28d1b8f3-172a-4f6d-983d-36021508444a",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/instances/28d1b8f3-172a-4f6d-983d-36021508444a", 
+                        "href": "https://endpoint/instances/28d1b8f3-172a-4f6d-983d-36021508444a",
                         "rel": "bookmark"
                     }
-                ], 
-                "name": "instance1", 
-                "status": "ACTIVE", 
+                ],
+                "name": "instance1",
+                "status": "ACTIVE",
                 "volume": {
                     "size": 2
                 }
-            }, 
+            },
             {
                 "flavor": {
-                    "id": "1", 
+                    "id": "1",
                     "links": [
                         {
-                            "href": "https://endpoint/v1.0/1234/flavors/1", 
+                            "href": "https://endpoint/v1.0/1234/flavors/1",
                             "rel": "self"
-                        }, 
+                        },
                         {
-                            "href": "https://endpoint/flavors/1", 
+                            "href": "https://endpoint/flavors/1",
                             "rel": "bookmark"
                         }
                     ]
-                }, 
-                "id": "8fb081af-f237-44f5-80cc-b46be1840ca9", 
+                },
+                "id": "8fb081af-f237-44f5-80cc-b46be1840ca9",
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/instances/8fb081af-f237-44f5-80cc-b46be1840ca9", 
+                        "href": "https://endpoint/v1.0/1234/instances/8fb081af-f237-44f5-80cc-b46be1840ca9",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/instances/8fb081af-f237-44f5-80cc-b46be1840ca9", 
+                        "href": "https://endpoint/instances/8fb081af-f237-44f5-80cc-b46be1840ca9",
                         "rel": "bookmark"
                     }
-                ], 
-                "name": "instance2", 
-                "status": "ACTIVE", 
+                ],
+                "name": "instance2",
+                "status": "ACTIVE",
                 "volume": {
                     "size": 2
                 }
@@ -641,7 +641,7 @@ Response:
 
 #### List Database Instance Details `GET /instances/{instance_id}`
 
-This operation lists the status and details of the specified database instance. 
+This operation lists the status and details of the specified database instance.
 It also lists the volume size in gigabytes (GB) and the approximate GB used.
 
 Response:
@@ -650,37 +650,37 @@ Response:
 
     {
         "instance": {
-            "created": "2012-03-28T21:31:02Z", 
+            "created": "2012-03-28T21:31:02Z",
             "flavor": {
-                "id": "1", 
+                "id": "1",
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/flavors/1", 
+                        "href": "https://endpoint/v1.0/1234/flavors/1",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/flavors/1", 
+                        "href": "https://endpoint/flavors/1",
                         "rel": "bookmark"
                     }
                 ]
-            }, 
-            "hostname": "e09ad9a3f73309469cf1f43d11e79549caf9acf2.rackspaceclouddb.com", 
-            "id": "2450c73f-7805-4afe-a42c-4094ab42666b", 
+            },
+            "hostname": "e09ad9a3f73309469cf1f43d11e79549caf9acf2.rackspaceclouddb.com",
+            "id": "2450c73f-7805-4afe-a42c-4094ab42666b",
             "links": [
                 {
-                    "href": "https://endpoint/v1.0/1234/instances/2450c73f-7805-4afe-a42c-4094ab42666b", 
+                    "href": "https://endpoint/v1.0/1234/instances/2450c73f-7805-4afe-a42c-4094ab42666b",
                     "rel": "self"
-                }, 
+                },
                 {
-                    "href": "https://endpoint/instances/2450c73f-7805-4afe-a42c-4094ab42666b", 
+                    "href": "https://endpoint/instances/2450c73f-7805-4afe-a42c-4094ab42666b",
                     "rel": "bookmark"
                 }
-            ], 
-            "name": "xml_rack_instance",  
-            "status": "ACTIVE", 
-            "updated": "2012-03-28T21:34:25Z", 
+            ],
+            "name": "xml_rack_instance",
+            "status": "ACTIVE",
+            "updated": "2012-03-28T21:34:25Z",
             "volume": {
-                "size": 2, 
+                "size": 2,
                 "used": 0.124542236328125
             }
         }
@@ -689,44 +689,44 @@ Response:
 #### Delete instance: `DELETE /instances/{instance_id}`
 
 Response:
-    
+
     Status: 202 ACCEPTED
 
 #### Enable root user: `POST /instances/{instance_id}/root`
 
-This operation enables login from any host for the root user and provides the 
+This operation enables login from any host for the root user and provides the
 user with a generated root password.
 
 Response:
 
     Status: 200 OK
-    
+
     {
         "user": {
-            "name": "root", 
+            "name": "root",
             "password": "d4311cb1-d912-45be-8517-e8a46f54df66"
         }
-    }    
-    
+    }
+
 ### Get root enabled status: `GET /instances/{instance_id}/root`
 
-This operation checks an active specified database instance to see if root 
-access is enabled. It returns True if root user is enabled for the specified 
+This operation checks an active specified database instance to see if root
+access is enabled. It returns True if root user is enabled for the specified
 database instance or False otherwise.
 
 Response:
 
     Status: 200 OK
-    
+
     {
         "rootEnabled": true
     }
-    
+
 ### Instance Actions
 
 #### Restart instance `POST /instances/{instanceId}/action`
 
-The restart operation will restart only the MySQL Instance. Restarting MySQL 
+The restart operation will restart only the MySQL Instance. Restarting MySQL
 will erase any dynamic configuration settings that you have made within MySQL.
 
 Request:
@@ -741,7 +741,7 @@ Response:
 
 #### Resize instance `POST /instances/{instanceId}/action`
 
-This operation changes the memory size of the instance, assuming a valid 
+This operation changes the memory size of the instance, assuming a valid
 flavorRef is provided. Restarts MySQL in the process.
 
 Request:
@@ -758,8 +758,8 @@ Response:
 
 #### Resize volume `POST /instances/{instanceId}/action`
 
-This operation supports resizing the attached volume for an instance. It 
-supports only increasing the volume size and does not support decreasing the 
+This operation supports resizing the attached volume for an instance. It
+supports only increasing the volume size and does not support decreasing the
 size. The volume size is in gigabytes (GB) and must be an integer.
 
 Request:
@@ -787,10 +787,10 @@ Request:
     {
         "databases": [
             {
-                "character_set": "utf8", 
-                "collate": "utf8_general_ci", 
+                "character_set": "utf8",
+                "collate": "utf8_general_ci",
                 "name": "testingdb"
-            }, 
+            },
             {
                 "name": "sampledb"
             }
@@ -811,16 +811,16 @@ Response:
         "databases": [
             {
                 "name": "anotherexampledb"
-            }, 
+            },
             {
                 "name": "exampledb"
-            }, 
+            },
             {
                 "name": "nextround"
-            }, 
+            },
             {
                 "name": "sampledb"
-            }, 
+            },
             {
                 "name": "testingdb"
             }
@@ -829,7 +829,7 @@ Response:
 
 #### Delete database `DELETE  /instances/{instance_id}/databases/{database_name}`
 
-Deletes the requested database within the specified database instance. Note that 
+Deletes the requested database within the specified database instance. Note that
 all data associated with the database is also deleted.
 
 Response
@@ -851,20 +851,20 @@ Request:
                     {
                         "name": "databaseA"
                     }
-                ], 
-                "name": "dbuser3", 
+                ],
+                "name": "dbuser3",
                 "password": "password"
-            }, 
+            },
             {
                 "databases": [
                     {
                         "name": "databaseB"
-                    }, 
+                    },
                     {
                         "name": "databaseC"
                     }
-                ], 
-                "name": "dbuser4", 
+                ],
+                "name": "dbuser4",
                 "password": "password"
             }
         ]
@@ -880,14 +880,14 @@ Show a single user and the databases to which this user has privileges.
 
 Response:
 
-    {      
+    {
         "user": {
             "name": "username",
             "databases": [
                 {
                     "name": "databaseB"
 
-                }, 
+                },
                 {
                     "name": "databaseC"
                 }
@@ -908,18 +908,18 @@ Response:
                     {
                         "name": "databaseA"
                     }
-                ], 
+                ],
                 "name": "dbuser3"
-            }, 
+            },
             {
                 "databases": [
                     {
                         "name": "databaseB"
-                    }, 
+                    },
                     {
                         "name": "databaseC"
                     }
-                ], 
+                ],
                 "name": "dbuser4"
             }
         ]
@@ -936,7 +936,7 @@ Response:
         "databases": [
             {
                 "name": "databaseB"
-            }, 
+            },
             {
                 "name": "databaseC"
             }
@@ -954,7 +954,7 @@ Request:
         "databases": [
             {
                 "name": "databaseB"
-            }, 
+            },
             {
                 "name": "databaseC"
             }
@@ -980,11 +980,11 @@ Request:
     {
         "users": [
             {
-                "name": "dbuser3", 
+                "name": "dbuser3",
                 "password": "password"
-            }, 
+            },
             {
-                "name": "dbuser4", 
+                "name": "dbuser4",
                 "password": "password"
             }
         ]
@@ -1003,7 +1003,7 @@ Response
 
 #### List Flavors `GET /flavors`
 
-Lists information for all available flavors. This resource is identical to the 
+Lists information for all available flavors. This resource is identical to the
 flavors found in the OpenStack Nova API, but without the disk property.
 
 Response:
@@ -1011,65 +1011,65 @@ Response:
     {
         "flavors": [
             {
-                "id": 1, 
+                "id": 1,
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/flavors/1", 
+                        "href": "https://endpoint/v1.0/1234/flavors/1",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/flavors/1", 
+                        "href": "https://endpoint/flavors/1",
                         "rel": "bookmark"
                     }
-                ], 
-                "name": "m1.tiny", 
+                ],
+                "name": "m1.tiny",
                 "ram": 512
-            }, 
+            },
             {
-                "id": 2, 
+                "id": 2,
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/flavors/2", 
+                        "href": "https://endpoint/v1.0/1234/flavors/2",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/flavors/2", 
+                        "href": "https://endpoint/flavors/2",
                         "rel": "bookmark"
                     }
-                ], 
-                "name": "m1.small", 
+                ],
+                "name": "m1.small",
                 "ram": 1024
-            }, 
+            },
             {
-                "id": 3, 
+                "id": 3,
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/flavors/3", 
+                        "href": "https://endpoint/v1.0/1234/flavors/3",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/flavors/3", 
+                        "href": "https://endpoint/flavors/3",
                         "rel": "bookmark"
                     }
-                ], 
-                "name": "m1.medium", 
+                ],
+                "name": "m1.medium",
                 "ram": 2048
-            }, 
+            },
             {
-                "id": 4, 
+                "id": 4,
                 "links": [
                     {
-                        "href": "https://endpoint/v1.0/1234/flavors/4", 
+                        "href": "https://endpoint/v1.0/1234/flavors/4",
                         "rel": "self"
-                    }, 
+                    },
                     {
-                        "href": "https://endpoint/flavors/4", 
+                        "href": "https://endpoint/flavors/4",
                         "rel": "bookmark"
                     }
-                ], 
-                "name": "m1.large", 
+                ],
+                "name": "m1.large",
                 "ram": 4096
-            }, 
+            },
         ]
     }
 
@@ -1081,18 +1081,18 @@ Response:
 
     {
         "flavor": {
-            "id": 1, 
+            "id": 1,
             "links": [
                 {
-                    "href": "https://endpoint/v1.0/1234/flavors/1", 
+                    "href": "https://endpoint/v1.0/1234/flavors/1",
                     "rel": "self"
-                }, 
+                },
                 {
-                    "href": "https://endpoint/flavors/1", 
+                    "href": "https://endpoint/flavors/1",
                     "rel": "bookmark"
                 }
-            ], 
-            "name": "m1.tiny", 
+            ],
+            "name": "m1.tiny",
             "ram": 512
         }
     }
